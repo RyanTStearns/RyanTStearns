@@ -25,3 +25,37 @@ Disable USB usage
   nano /etc/rc.local
     +modprobe -r usb_storage
     +exit 0
+
+Checking Installed Packages
+  apt-cache pkgnames
+
+Removing Unneccessary Services
+  EXAMPLES : Telnet, RSH, NIS, TFTP, TALK
+
+Checking Open Ports
+  netstat -antp
+
+Secure/Harden SSH
+  1. Options of sshd_config file
+    a. Change port #
+        nano /etc/ssh/sshd_config
+    b.  Additional Options
+        Protocol2
+        IgnoreRhosts to yes
+        HostbasedAuthentication no
+        PermitEmptyPasswords no
+        X11Forwarding no
+        MaxAuthTries 5
+        Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+        ClientAliveInterval 900 
+        ClientAliveCountMax 0
+        UsePAM yes
+    c. Set permissions on the sshd_config file so only root can modify
+        chown root:root /etc/ssh/sshd_config
+        chmod 600 /etc/ssh/sshd_config
+
+  2. Disable root login remotely through SSH 
+      PermitRootLogin no
+      AllowUsers [username] 
+  
+  
