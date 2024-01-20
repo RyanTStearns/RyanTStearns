@@ -1,0 +1,27 @@
+Linux Hardening
+
+Update Linux
+  apt-get update
+
+Upgrade Linux 
+  apt-get upgrade -y
+
+Locking the boot directory
+  nano /etc/fstab
+    +LABEL=/boot  /boot  ext2 defaults, ro  1 2
+  chown root:root /etc/fstab
+
+Permissions for secure boot
+  chown root:root /etc/grub.conf
+  chmod og-rwx /etc/grub.conf
+
+Require Authentication for single-user mode
+  sed -i "/SINGLE/s/sushell/sulogin/" /etc/sysconfig/init 
+  sed -i "/PROMPT/s/yes/no/" /etc/sysconfig/init
+
+Disable USB usage
+  nano /etc/modprobe.d/blacklist.conf
+  blacklist usb_storage
+  nano /etc/rc.local
+    +modprobe -r usb_storage
+    +exit 0
