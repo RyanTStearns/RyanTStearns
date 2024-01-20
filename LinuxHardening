@@ -138,3 +138,39 @@ Manage Password Policies
         chmod og-rwx /etc/cron.monthly
         chown root:root /etc/cron.d
         chmod og-rwx /etc/cron.d
+
+7. Set permissions for root crontab
+      nano /var/spool/cron
+        +chown root:root <crontabfile>
+        +chmod og-rwx <crontabfile>
+
+8. Set permissions for passwd file
+      chmod 644 /etc/passwd
+      chown root:root /etc/passwd
+
+9.  Set permissions for the group file
+      chmod 644 /etc/group
+      chown root:root /etc/group
+
+10.  Set permissions for the shadow file
+      chmod 600 /etc/shadow
+      chown root:root /etc/shadow
+
+11.  Set permissions on the gshadow file
+      chmod 600 /etc/gshadow
+      chown root:root /etc/gshadow
+
+12.  Restrict Core Dumps
+      /etc/security/limits.conf
+        +hard core 0 
+      /etc/sysctl.conf
+        +fs.suid_dumpable = 0
+
+13. Exec Shield Configuration
+      /etc/sysctl.conf
+        +kernel.exec-shield = 1
+
+14. Enable Randomized Virtual Memory Region Placement
+      /etc/sysctl.conf
+        +kernel.randomize_va_space = 2
+      
