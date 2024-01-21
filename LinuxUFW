@@ -1,0 +1,35 @@
+ENABLING UFW (UNCOMPLICATED FIREWALL) IN UBUNTU
+
+1.) Enable UFW
+    sudo ufw enable
+
+2.) Open necessary ports
+    sudo ufw allow 22
+
+3.) Add additional rules
+    sudo ufw insert 1 allow 80
+
+4.) Close an opened port
+    sudo ufw deny 22
+
+5.) Remove a rule
+    sudo ufw delete deny 22
+
+6.) Allow access from specific hosts to port
+    *Example allows SSH access from host 192.168.0.2 to any IP Address on this host)*
+    sudo ufw allow proto tcp from 192.168.0.2 to any port 22
+
+7.) Output resulting rules without applying them
+    sudo ufw --dry-run allow http
+
+8.) Disable UFW
+    sudo ufw disable
+
+9.) See Firewall Status
+    sudo ufw status
+
+10.) See Verbose Status
+    sudo ufw status verbose
+
+11.) See Status (# Format)
+    sudo ufw status numbered
