@@ -1,0 +1,8 @@
+Linux Ports and Services
+
+***LIST ALL LISTENING PORTS #'S W/ PROCESS RESPONSIBLE***
+  sudo netstat -lnp
+
+***TERMINATE / KILL PROCESS TO CLOSE PORT***
+  kill
+  pkill
