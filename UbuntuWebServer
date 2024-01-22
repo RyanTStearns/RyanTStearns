@@ -1,0 +1,34 @@
+------UBUNTU WEB SERVER-------
+1.) Install Apache2
+  sudo apt install apache2
+
+2.) View UFW App List
+  sudo ufw app list
+
+3.) Allow Apache2 through UFW
+  sudo ufw allow 'Apache'
+  Options : Apache, Apache Full, Apache Secure, OpenSSH
+
+4.) Check Status of Apache2 Service
+  sudo systemctl status apache2
+
+5.) Ensure IP Address is Hosting Apache2
+    hostname -I
+
+6.) Stopping Apache2
+    sudo systemctl stop apache2
+
+7.) Starting Apache2
+    sudo systemctl start apache2
+
+8.) Restart Apache2
+    sudo systemctl restart apache2
+
+9.) Reload Config Changes Apache2
+    sudo systemctl reload apache2
+
+10.) Disable Apache2 Startup at Boot
+    sudo systemctl disable apache2
+
+11.) Enable Apache2 Startup at Boot
+    sudo systemctl enable apache2
