@@ -43,3 +43,24 @@ fudge 127.127.1.0 stratum 10
 
 #mitigates CVE-2013-5211
 disable monitor
+____________________________________________________________________________________________________________
+# creates file to adjust the default system clock value after a service interruption/restart
+driftfile /var/lib/ntp/drift
+
+# access control configuration
+restrict -4 default kod notrap nomodify nopeer noquery limited
+restrict -6 default kod notrap nomodify nopeer noquery limited
+
+# restrict NTP access to localhost
+restrict 127.0.0.1
+restrict -6 ::1
+
+# point to NIST time servers use fastest method to collect time
+server time.nist.gov iburst
+
+# point to localhost if access is lost to NTP servers/pools
+fudge 127.127.1.0 stratum 10
+
+# mitigates CVE-2013-5211
+disable monitor
+___________________________________________________________________________________________________________
