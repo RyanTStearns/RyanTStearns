@@ -1,0 +1,45 @@
+1.) Type date to see current date and time. (Use -R to get a standard unambiguous format. Locale specific timezones are ambiguous.) 
+    date -R
+
+2.) Install NTP 
+    aptitude install ntp
+
+3.) See NTP servers you are syncing with
+    ntpq -p
+
+4.) Troubleshooting NTP
+    4a. If run :
+    ntpq -p
+    and get :
+    No association ID's returned
+
+    4b. Then run : 
+    dpkg-reconfigure ntp
+    ntpq -p
+
+
+________________________________________________________________________________________________________________
+#creates file to adjust the default system clock value after a service interruption/restart
+driftfile /var/lib/ntp/drift
+
+#access controls to reduce unwanted queries (kod)
+#prevent alteration of configuration file (nomodify)
+#prevent nptdc from being used for control message protocol traps (notrap)
+#prevent peer queries (nopeer)
+#prevent ntpq and ntpdc queries from being answered (noquery)
+
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+
+#restrict NTP access to localhost
+restrict 127.0.0.1
+restrict -6 ::1
+
+#point to NIST time servers use fastest method to collect time
+server time.nist.gov iburst
+
+#point to localhost if access is lost to NTP servers/pools
+fudge 127.127.1.0 stratum 10
+
+#mitigates CVE-2013-5211
+disable monitor
