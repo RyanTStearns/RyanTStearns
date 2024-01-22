@@ -64,3 +64,17 @@ fudge 127.127.1.0 stratum 10
 # mitigates CVE-2013-5211
 disable monitor
 ___________________________________________________________________________________________________________
+consider adding to the default configuration is:
+
+pool time.nist.gov iburst
+
+The statistics lines you highlighted don't have any effect unless you uncomment this line:
+
+#statsdir /var/log/ntpstats/
+
+And the last one is very important, because it enables you to use pools:
+
+restrict source notrap nomodify noquery
+
+You should make sure that line is left in place.
+______________________________________________________________________________________________________________
